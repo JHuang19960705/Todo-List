@@ -1,6 +1,7 @@
 // 引入所需模組
 const express = require('express'); // 引入 Express 框架
 const mysql = require('mysql'); // 引入 MySQL 模組
+const cors = require('cors'); // 引入 cors 模組
 
 // 引入 dotenv 模組並讀取 .env 檔案中的環境變數
 require('dotenv').config(); 
@@ -27,6 +28,7 @@ db.connect((err) => {
 // 設置中介軟體來解析 POST 請求的資料
 app.use(express.json()); // 解析 JSON 格式的請求資料
 app.use(express.urlencoded({ extended: false })); // 解析表單提交的資料
+app.use(cors()); // 使用 CORS 中間件
 
 // 設置靜態資源路徑，使 Express 能夠提供 public 資料夾中的檔案
 app.use(express.static('public'));
