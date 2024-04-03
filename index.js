@@ -1,13 +1,19 @@
 // 引入所需模組
 const express = require('express'); // 引入 Express 框架
-const mysql = require('mysql'); // 引入 MySQL 模組
 const cors = require('cors'); // 引入 cors 模組
+const app = express(); // 建立 Express 應用程式
+const mysql = require('mysql'); // 引入 MySQL 模組
 
 // 引入 dotenv 模組並讀取 .env 檔案中的環境變數
 require('dotenv').config(); 
 
-// 建立 Express 應用程式
-const app = express();
+// 設置中介軟體來解析 POST 請求的資料
+app.use(express.json()); // 解析 JSON 格式的請求資料
+app.use(express.urlencoded({ extended: false })); // 解析表單提交的資料
+app.use(cors()); // 使用 CORS 中間件
+
+// 設置靜態資源路徑，使 Express 能夠提供 public 資料夾中的檔案
+app.use(express.static('public'));
 
 // 設定 MySQL 連接參數
 const db = mysql.createConnection({
@@ -24,14 +30,6 @@ db.connect((err) => {
     }
     console.log('MySQL 連線成功...'); // 連線成功時的提示訊息
 });
-
-// 設置中介軟體來解析 POST 請求的資料
-app.use(express.json()); // 解析 JSON 格式的請求資料
-app.use(express.urlencoded({ extended: false })); // 解析表單提交的資料
-app.use(cors()); // 使用 CORS 中間件
-
-// 設置靜態資源路徑，使 Express 能夠提供 public 資料夾中的檔案
-app.use(express.static('public'));
 
 // 使用 app.get('/') 路由來直接渲染 HTML 檔案
 app.get('/', (req, res) => {
