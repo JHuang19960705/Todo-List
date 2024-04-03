@@ -12,16 +12,16 @@ app.use(express.urlencoded({ extended: false })); // 解析表單提交的資料
 app.use(cors()); // 使用 CORS 中間件
 
 // 設置靜態資源路徑，使 Express 能夠提供 public 資料夾中的檔案
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 const postsRouter = require('./routes/posts.router')
 
 app.use("/api/v1/todoList", postsRouter)
 
 // 使用 app.get('/') 路由來直接渲染 HTML 檔案
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html'); // 將 HTML 檔案發送到客戶端
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/public/index.html'); // 將 HTML 檔案發送到客戶端
+// });
 
 // 監聽端口
 const PORT = process.env.PORT || 5000 // 應用程式運行的端口號
