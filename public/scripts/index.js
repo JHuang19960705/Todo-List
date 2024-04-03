@@ -5,6 +5,9 @@ const addTodoElement = document.querySelector(".js-add-todo");
 const editTodoButton = document.querySelector(".js-edit-button");
 const deleteTodoButton = document.querySelector(".js-delete-button");
 
+// 後端URL
+const URL = "https://todo-list-beta-topaz.vercel.app/api/v1/todoList"
+
 // 事件監聽器註冊
 addTodoElement.addEventListener("click", enterAddTodoFn);
 editTodoButton.addEventListener("click", editTodo);
@@ -24,7 +27,7 @@ fetchDataAndRender();
 // 函數定義
 async function fetchDataAndRender() {
     try {
-        const response = await fetch('/api/v1/todoList/get_todoList');
+        const response = await fetch(`${URL}/get_todoList`);
         if (!response.ok) {
             throw new Error('無法獲取待辦事項列表');
         }
