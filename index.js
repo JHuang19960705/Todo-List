@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false })); // 解析表單提交的資料
 app.use(cors()); // 使用 CORS 中間件
 
 // 設置靜態資源路徑，使 Express 能夠提供 public 資料夾中的檔案
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 const postsRouter = require('./routes/posts.router')
 
