@@ -81,7 +81,7 @@ async function addTodo() {
     }
 
     try {
-        const response = await fetch('/api/v1/todoList/add_todoList', {
+        const response = await fetch(`${URL}/add_todoList`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -162,7 +162,7 @@ function editTodo() {
         const newData = { id, name: newName, due_date: newDueDate };
 
         // 發送 PATCH 請求
-        fetch(`/api/v1/todoList/update_todoList/${id}`, {
+        fetch(`${URL}/update_todoList/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -215,7 +215,7 @@ function deleteTodo() {
     // 將字串轉換為數字類型
     let id = parseInt(deleteTodoButton.dataset.id, 10);
 
-    fetch(`/api/v1/todoList/delete_todoList/${id}`, {
+    fetch(`${URL}/delete_todoList/${id}`, {
         method: 'DELETE'
     })
         .then(response => {
