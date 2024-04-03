@@ -24,12 +24,13 @@ fetchDataAndRender();
 // 函數定義
 async function fetchDataAndRender() {
     try {
-        const response = await fetch('/get_todoList');
+        const response = await fetch('/api/v1/todoList/get_todoList');
         if (!response.ok) {
             throw new Error('無法獲取待辦事項列表');
         }
         const data = await response.json();
-        todoList = data;
+        todoList = data.data;
+        console.log(todoList);
         renderTodoList();
     } catch (error) {
         console.error('錯誤:', error);
@@ -77,7 +78,7 @@ async function addTodo() {
     }
 
     try {
-        const response = await fetch('/add_todoList', {
+        const response = await fetch('/api/v1/todoList/add_todoList', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -158,7 +159,7 @@ function editTodo() {
         const newData = { id, name: newName, due_date: newDueDate };
 
         // 發送 PATCH 請求
-        fetch(`/update_todoList/${id}`, {
+        fetch(`/api/v1/todoList/update_todoList/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -211,7 +212,7 @@ function deleteTodo() {
     // 將字串轉換為數字類型
     let id = parseInt(deleteTodoButton.dataset.id, 10);
 
-    fetch(`/delete_todoList/${id}`, {
+    fetch(`/api/v1/todoList/delete_todoList/${id}`, {
         method: 'DELETE'
     })
         .then(response => {
