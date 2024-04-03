@@ -18,11 +18,6 @@ const postsRouter = require('./routes/posts.router')
 
 app.use("/api/v1/todoList", postsRouter)
 
-// 使用 app.get('/') 路由來直接渲染 HTML 檔案
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html'); // 將 HTML 檔案發送到客戶端
-});
-
 // 監聽端口
 const PORT = process.env.PORT || 5000 // 應用程式運行的端口號
 app.listen(PORT, () => console.log(`伺服器正在執行，位於端口 ${PORT}`)); // 在控制台輸出伺服器啟動訊息
