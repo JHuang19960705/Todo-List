@@ -1,6 +1,6 @@
 const pool = require("../database/index")
 
-const postsController = {
+const todoListController = {
 
   // 使用 app.get('/get_todoList') 路由來檢索 todoList 表中的所有資料
   getAll: async (req, res) => {
@@ -71,4 +71,4 @@ const postsController = {
   }
 }
 
-module.exports = postsController
+module.exports = todoListController

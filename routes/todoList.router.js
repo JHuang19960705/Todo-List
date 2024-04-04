@@ -2,7 +2,7 @@ const express = require("express")
 const path = require('path')
 const router = express.Router()
 
-const postsController = require("../controller/posts.controller")
+const todoListController = require("../controller/todoList.controller")
 
 router.get("/", (req, res) => {
   const indexPath = path.join(__dirname, '../public/index.html');
@@ -14,9 +14,9 @@ router.use("/styles", express.static(path.join(__dirname, '../public/styles')));
 router.use("/scripts", express.static(path.join(__dirname, '../public/scripts')));
 
 
-router.get("/get_todoList", postsController.getAll)
-router.post("/add_todoList", postsController.create)
-router.patch("/update_todoList/:id", postsController.update)
-router.delete("/delete_todoList/:id", postsController.delete)
+router.get("/get_todoList", todoListController.getAll)
+router.post("/add_todoList", todoListController.create)
+router.patch("/update_todoList/:id", todoListController.update)
+router.delete("/delete_todoList/:id", todoListController.delete)
 
 module.exports = router
